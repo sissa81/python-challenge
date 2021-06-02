@@ -38,16 +38,20 @@ with open(budget_csv) as csvfile:
     Average_change = "${:,.2f}".format(Total_change/Number_Change)
     
     # Find the max and min in the change list, one unformatted for index purposes
-    max_change = "${:,.2f}".format(max(change_profits_list))   
-    min_change = "${:,.2f}".format(min(change_profits_list))   
+    max_change_profit = "${:,.2f}".format(max(change_profits_list))   
+    min_change_profit = "${:,.2f}".format(min(change_profits_list))   
 
     max_change_for_index = max(change_profits_list)
     min_change_for_index = min(change_profits_list)
 
     # Find the max and min position of max and min changes
-    max_index = change_profits_list.index(max_change_for_index)
-    min_index = change_profits_list.index(min_change_for_index)
+    max_change = change_profits_list.index(max_change_for_index)
+    min_change = change_profits_list.index(min_change_for_index)
     
+    # Adjust for change in profits being one less row of data
+    max_index = max_change + 1
+    min_index = min_change + 1
+
     # Find the max and min months
     max_month = months_list[max_index]
     min_month = months_list[min_index]
@@ -58,8 +62,8 @@ with open(budget_csv) as csvfile:
     print(f"Total Months: {Total_Months}")
     print(f"Total: {Total_Profits}")
     print(f"Average Change: {Average_change}")
-    print(f"Greatest Increase in Profits: {max_month} {max_change}")
-    print(f"Greatest Increase in Profits: {min_month} {min_change}")
+    print(f"Greatest Increase in Profits: {max_month} {max_change_profit}")
+    print(f"Greatest Decrease in Profits: {min_month} {min_change_profit}")
 
     #Print Analysis to Text File
     Text_File = open("PyBank.txt","w")
@@ -68,7 +72,7 @@ with open(budget_csv) as csvfile:
     Text_File.write(f'Total Months: {Total_Months}\n')
     Text_File.write(f'Total: {Total_Profits}\n')
     Text_File.write(f'Average Change: {Average_change}\n')
-    Text_File.write(f'Greatest Increase in Profits: {max_month} {max_change}\n')
-    Text_File.write(f'Greatest Increase in Profits: {min_month} {min_change}')
+    Text_File.write(f'Greatest Increase in Profits: {max_month} {max_change_profit}\n')
+    Text_File.write(f'Greatest Decrease in Profits: {min_month} {min_change_profit}')
     Text_File.close()
 
