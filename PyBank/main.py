@@ -52,14 +52,23 @@ with open(budget_csv) as csvfile:
     max_month = months_list[max_index]
     min_month = months_list[min_index]
     
-    
+    # Print Analysis in Terminal
+    print("Financial Analysis")
+    print("-----------------------------")
+    print(f"Total Months: {Total_Months}")
+    print(f"Total: {Total_Profits}")
+    print(f"Average Change: {Average_change}")
+    print(f"Greatest Increase in Profits: {max_month} {max_change}")
+    print(f"Greatest Increase in Profits: {min_month} {min_change}")
 
+    #Print Analysis to Text File
+    Text_File = open("PyBank.txt","w")
+    Text_File.write(f'Financial Analysis\n')
+    Text_File.write(f'-----------------------------\n')
+    Text_File.write(f'Total Months: {Total_Months}\n')
+    Text_File.write(f'Total: {Total_Profits}\n')
+    Text_File.write(f'Average Change: {Average_change}\n')
+    Text_File.write(f'Greatest Increase in Profits: {max_month} {max_change}\n')
+    Text_File.write(f'Greatest Increase in Profits: {min_month} {min_change}')
+    Text_File.close()
 
-    # Print Analysis
-print("Financial Analysis")
-print("-----------------------------")
-print(f"Total Months: {Total_Months}")
-print(f"Total: {Total_Profits}")
-print(f"Average Change: {Average_change}")
-print(f"Greatest Increase in Profits: {max_month} {max_change}")
-print(f"Greatest Increase in Profits: {min_month} {min_change}")
