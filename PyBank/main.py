@@ -28,7 +28,7 @@ with open(budget_csv) as csvfile:
         Total_Months += 1
       
     # Loop to calculate change in profits
-    for i in range(1, 86):
+    for i in range(1, Total_Months):
         change = profits_list[i] - profits_list[i-1]
         change_profits_list.append(change)
 
