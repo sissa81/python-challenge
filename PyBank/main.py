@@ -2,8 +2,7 @@
 import os
 import csv
 
-# Starting count for profits and months
-total_profits = 0
+# Starting count for and months
 number_months = 0
 
 # Create new list
@@ -20,10 +19,10 @@ with open(budget_csv) as csvfile:
     # Account for header row
     csvheader = next (csvfile)
           
-    # Loop to total profits / months 
+    # Loop to append to profits list and to total profits / months 
     for row in csvreader:
         profits_list.append(int(row[1]))
-        total_profits += int(row[1])
+        TotalProfits = "${:,.2f}".format(sum(profits_list))
         number_months += 1
 
     # Loop to calculate change in profits
@@ -36,8 +35,12 @@ with open(budget_csv) as csvfile:
     Number_Change = len(change_profits_list)
     Average_change = "${:,.2f}".format(Total_change/Number_Change)
     
-    
-    print(Average_change)
+    # Find the max and min in the change list
+    max_change = "${:,.2f}".format(max(change_profits_list))   
+    min_change = "${:,.2f}".format(min(change_profits_list))   
+
+
+
 
     
 
@@ -48,6 +51,10 @@ with open(budget_csv) as csvfile:
 
 
     # Print Analysis
-    # print(f"Financial Analysis\n-----------------------------\nTotal Months: {number_months}\nTotal: ${total_profits}")
-
-
+print("Financial Analysis")
+print("-----------------------------")
+print(f"Total Months: {number_months}")
+print(f"Total: {TotalProfits}")
+print(f"Average Change: {Average_change}")
+print(f"Greatest Increase in Profits: {max_change}")
+print(f"Greatest Increase in Profits: {min_change}")
